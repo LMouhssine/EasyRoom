@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class EasyroomApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(EasyroomApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(EasyroomApplication.class, args);
+    }
 }
