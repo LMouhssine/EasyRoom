@@ -1,9 +1,9 @@
 package com.example.easyroom.model;
 
 public enum TypeSalle {
-    ORDINAIRE,
+    REUNION,
+    COURS,
     INFORMATIQUE,
-    MULTIMEDIA,
-    LANGUE,
-    AMPHI
+    LABORATOIRE,
+    CONFERENCE
 }
