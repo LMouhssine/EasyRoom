@@ -3,74 +3,108 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
+    <!-- Parent POM: Spring Boot Starter Parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.1</version>
-        <relativePath/>
+        <relativePath/> <!-- Look for the parent POM locally or in Maven Central -->
     </parent>
     
+    <!-- Project Metadata -->
     <groupId>com.example</groupId>
     <artifactId>easyroom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>easyroom</name>
     <description>Système de réservation de salles</description>
-    
+
+    <!-- Properties -->
     <properties>
         <java.version>17</java.version>
         <start-class>com.example.easyroom.EasyroomApplication</start-class>
     </properties>
     
+    <!-- Dépendances -->
     <dependencies>
-        <!-- Spring Web -->
+        <!-- Spring Web: Pour créer des applications web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        
-        <!-- Spring Data JPA -->
+
+        <!-- Spring Data JPA: Pour la gestion des bases de données relationnelles -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        
-        <!-- Spring Security -->
+
+        <!-- Spring Thymeleaf: Pour le rendu des pages HTML -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- Spring Security: Pour la gestion de la sécurité -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        
-        <!-- MySQL Driver -->
+
+        <!-- MySQL Driver: Connexion à la base de données MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        
-        <!-- Lombok -->
+
+        <!-- Lombok: Réduction du code boilerplate (getter/setter, etc.) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        
-        <!-- Test -->
+
+        <!-- Spring Boot Test: Pour les tests unitaires et d'intégration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- H2 Database: Pour les tests avec une base en mémoire -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Hibernate Validator: Validation des entrées utilisateur -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- Spring Boot DevTools: Outils de développement -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
-    
+
+    <!-- Configuration du Build -->
     <build>
         <plugins>
+            <!-- Plugin Maven de Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.example.easyroom.EasyroomApplication</mainClass>
                     <excludes>
+                        <!-- Exclure Lombok du build final -->
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -78,14 +112,35 @@
                     </excludes>
                 </configuration>
             </plugin>
+
+            <!-- Plugin de Compilation -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <compilerArgs>
                         <arg>-Xlint</arg>
                     </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin de Gestion des Versions -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.15.0</version>
+            </plugin>
+
+            <!-- Plugin pour les Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <argLine>-Duser.language=fr</argLine>
                 </configuration>
             </plugin>
         </plugins>
