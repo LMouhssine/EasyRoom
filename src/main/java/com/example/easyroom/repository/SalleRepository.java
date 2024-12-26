@@ -9,9 +9,8 @@ import java.util.List;
 
 @Repository
 public interface SalleRepository extends JpaRepository<Salle, Long> {
-    // Méthodes de recherche personnalisées
-    List<Salle> findByType(TypeSalle type);
-    List<Salle> findByNombrePlacesGreaterThanEqual(Integer nombrePlaces);
-    Salle findByNumero(String numero);
-    boolean existsByNumero(String numero);
+    List<Salle> findByTypeSalle(TypeSalle typeSalle);
+    List<Salle> findByNombrePlacesSalleGreaterThanEqual(Integer nombrePlacesSalle);
+    Salle findByNumeroSalle(Integer numeroSalle);
+    boolean existsByNumeroSalle(Integer numeroSalle);
 }
