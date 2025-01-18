@@ -5,23 +5,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.config.Customizer;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
+            .csrf(csrf -> csrf.disable())  // Désactiver CSRF pour les API
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**").authenticated()
-                .anyRequest().authenticated()
-            )
-            .httpBasic(Customizer.withDefaults())
-            .cors(cors -> cors.disable());
-        
+                .requestMatchers("/api/**", "/css/**", "/js/**", "/etudiants", "/formations").permitAll()  // Autoriser l'accès aux API et aux ressources statiques
+                .anyRequest().authenticated()  // Toutes les autres routes nécessitent une authentification
+            );
+
         return http.build();
     }
 }

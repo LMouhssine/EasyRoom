@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Formations</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Gestion des Formations</h2>
+        
+        <!-- Formulaire -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form id="formationForm">
+                    <input type="hidden" id="formationId">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nomFormation" class="form-label">Nom de la formation</label>
+                            <input type="text" class="form-control" id="nomFormation" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="formateur" class="form-label">Formateur</label>
+                            <select class="form-control" id="formateur" required>
+                                <!-- Les options des formateurs seront ajoutées dynamiquement via JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="dateDebut" class="form-label">Date de début</label>
+                            <input type="date" class="form-control" id="dateDebut" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="dateFin" class="form-label">Date de fin</label>
+                            <input type="date" class="form-control" id="dateFin" required>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary me-2" id="btnCancel" style="display: none;">Annuler</button>
+                        <button type="submit" class="btn btn-primary" id="btnSubmit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Formateur</th>
+                                <th>Date de début</th>
+                                <th>Date de fin</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="formationTableBody">
+                            <!-- Les lignes des formations seront ajoutées dynamiquement via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/formation.js}"></script>
+</body>
+</html>

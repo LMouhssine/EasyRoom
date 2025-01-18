@@ -39,6 +39,13 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- Jakarta Persistence API: Pour les annotations JPA -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
         <!-- Spring Thymeleaf: Pour le rendu des pages HTML -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
